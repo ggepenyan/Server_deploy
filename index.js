@@ -3,7 +3,12 @@ import { Server } from 'socket.io';
 
 let allCounts = {};
 
-const PORT = 3000;
+const PORT = Number(process.env.PORT);
+if (!PORT) {
+  console.error("🔥  No PORT env var—cannot start server.");
+  process.exit(1);
+}
+
 const ORIGIN = 'https://tumo-socket-client.vercel.app';
 
 const httpServer = createServer();
